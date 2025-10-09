@@ -24,7 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_input_filter => 'Filter by keyword';
 
   @override
-  String get no_connection_title => 'No internet connection';
+  String get no_connection_title => 'Offline';
 
   @override
   String get no_connection_message => 'Please check your internet connection';

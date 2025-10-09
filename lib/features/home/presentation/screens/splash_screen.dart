@@ -49,7 +49,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void _tryNavigate() {
     if (_dataLoaded && !_navigated) {
       _navigated = true;
-      Future.microtask(() => GoRouter.of(context).go('/home'));
+      Future.delayed(const Duration(milliseconds: 3000), () {
+        if (mounted) {
+          GoRouter.of(context).go('/home');
+        }
+      });
     }
   }
 

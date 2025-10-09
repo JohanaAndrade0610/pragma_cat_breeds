@@ -128,7 +128,7 @@ abstract class AppLocalizations {
   /// No description provided for @no_connection_title.
   ///
   /// In en, this message translates to:
-  /// **'No internet connection'**
+  /// **'Offline'**
   String get no_connection_title;
 
   /// No description provided for @no_connection_message.
