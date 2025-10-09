@@ -113,6 +113,36 @@ abstract class AppLocalizations {
   /// **'Support'**
   String get footer_support;
 
+  /// No description provided for @home_card_origin.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin: '**
+  String get home_card_origin;
+
+  /// No description provided for @home_card_weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight: '**
+  String get home_card_weight;
+
+  /// No description provided for @home_card_kilograms.
+  ///
+  /// In en, this message translates to:
+  /// **'Kilograms'**
+  String get home_card_kilograms;
+
+  /// No description provided for @home_card_intelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'Intelligence: '**
+  String get home_card_intelligence;
+
+  /// No description provided for @home_card_see_more_info.
+  ///
+  /// In en, this message translates to:
+  /// **'See more information'**
+  String get home_card_see_more_info;
+
   /// No description provided for @home_tittle.
   ///
   /// In en, this message translates to:

@@ -18,6 +18,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get footer_support => 'Soporte';
 
   @override
+  String get home_card_origin => 'Origen: ';
+
+  @override
+  String get home_card_weight => 'Peso: ';
+
+  @override
+  String get home_card_kilograms => 'Kilogramos';
+
+  @override
+  String get home_card_intelligence => 'Inteligencia: ';
+
+  @override
+  String get home_card_see_more_info => 'Ver más información';
+
+  @override
   String get home_tittle => 'Razas de gatos';
 
   @override
