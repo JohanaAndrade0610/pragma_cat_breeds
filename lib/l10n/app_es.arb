@@ -4,6 +4,8 @@
   "footer_support": "Soporte",
   "home_tittle": "Razas de gatos",
   "home_input_filter": "Filtrar por palabra clave",
+  "no_connection_title": "Sin conexión",
+  "no_connection_message": "Por favor, compruebe su conexión a Internet",
   "support_you_have_questions": "¿Tienes dudas o inquietudes sobre este proyecto?",
   "support_contact_us": "¡Contáctanos y te responderemos con gusto!",
   "support_contact_by_whatsApp": "Contactar por WhatsApp"

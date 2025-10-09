@@ -125,6 +125,18 @@ abstract class AppLocalizations {
   /// **'Filter by keyword'**
   String get home_input_filter;
 
+  /// No description provided for @no_connection_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get no_connection_title;
+
+  /// No description provided for @no_connection_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connection'**
+  String get no_connection_message;
+
   /// No description provided for @support_you_have_questions.
   ///
   /// In en, this message translates to:

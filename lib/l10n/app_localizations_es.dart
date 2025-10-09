@@ -24,6 +24,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get home_input_filter => 'Filtrar por palabra clave';
 
   @override
+  String get no_connection_title => 'Sin conexión a internet';
+
+  @override
+  String get no_connection_message => 'Por favor, compruebe su conexión a Internet';
+
+  @override
   String get support_you_have_questions => '¿Tienes dudas o inquietudes sobre este proyecto?';
 
   @override

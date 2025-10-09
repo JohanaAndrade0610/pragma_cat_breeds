@@ -4,6 +4,8 @@
   "footer_support": "Support",
   "home_tittle": "Cat breeds",
   "home_input_filter": "Filter by keyword",
+  "no_connection_title": "Offline",
+  "no_connection_message": "Please check your internet connection",
   "support_you_have_questions": "¿Do you have questions or concerns about this project?",
   "support_contact_us": "¡Contact us and we'll be happy to help!",
   "support_contact_by_whatsApp": "Contact via WhatsApp"
