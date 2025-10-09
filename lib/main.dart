@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 
 import 'app.dart';
-import 'di/di.dart';
+import 'di/injection.dart';
 
 void main() {
   // Asegurar que los bindings de Flutter estén inicializados

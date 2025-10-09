@@ -10,7 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
-import 'di/di.dart';
+import 'di/injection.dart';
 import 'core/connectivity/connectivity_handler.dart';
 import 'core/connectivity/connectivity_service.dart';
 import 'core/locale_notifier.dart';
@@ -29,7 +29,7 @@ class App extends StatelessWidget {
     final router = AppRouter.instance.router;
     // Retornar la aplicación con el router configurado, temas e idiomas de la aplicación
     return BlocProvider<HomeCubit>(
-      create: (_) => sl<HomeCubit>(),
+      create: (_) => getIt<HomeCubit>(),
       child: ValueListenableBuilder<ThemeMode>(
         valueListenable: themeModeNotifier,
         builder: (context, mode, _) {
