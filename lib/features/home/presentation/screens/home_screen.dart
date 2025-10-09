@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fit: BoxFit.contain,
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 19),
             // Campo de búsqueda
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fillColor: inputFillColor,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 15),
             // Cards de razas de gatos
             Expanded(
               child: BlocBuilder<HomeCubit, HomeState>(

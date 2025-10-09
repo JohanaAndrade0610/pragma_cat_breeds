@@ -71,7 +71,7 @@ class CatBreedCard extends StatelessWidget {
       // Diseños de la tarjeta
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical: 16),
+        margin: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
@@ -144,7 +144,7 @@ class CatBreedCard extends StatelessWidget {
                           breed.name,
                           searchText,
                           const TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                             decorationThickness: 1,

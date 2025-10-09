@@ -78,8 +78,8 @@ class AppTheme {
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle text16FFFFFFBold2 = TextStyle(
-    fontSize: 16,
+  static const TextStyle text12FFFFFFBold2 = TextStyle(
+    fontSize: 12,
     color: whiteColor,
     fontWeight: FontWeight.w600,
     letterSpacing: 1.5,
