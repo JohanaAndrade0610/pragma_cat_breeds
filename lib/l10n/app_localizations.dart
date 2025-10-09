@@ -155,6 +155,12 @@ abstract class AppLocalizations {
   /// **'Filter by keyword'**
   String get home_input_filter;
 
+  /// No description provided for @home_no_results.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches found.'**
+  String get home_no_results;
+
   /// No description provided for @no_connection_title.
   ///
   /// In en, this message translates to:

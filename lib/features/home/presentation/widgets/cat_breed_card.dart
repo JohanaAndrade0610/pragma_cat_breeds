@@ -152,13 +152,15 @@ class CatBreedCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 14),
                       // Origen de la raza
                       Row(
                         children: [
-                          Text(
-                            l10n.home_card_origin,
-                            style: AppTheme.text11black87Semibold,
+                          RichText(
+                            text: TextSpan(
+                              text: l10n.home_card_origin,
+                              style: AppTheme.text11black87Semibold,
+                            ),
                           ),
                           Expanded(
                             child: RichText(
@@ -173,13 +175,15 @@ class CatBreedCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 10),
                       // Peso de la raza
                       Row(
                         children: [
-                          Text(
-                            l10n.home_card_weight,
-                            style: AppTheme.text11black87Semibold,
+                          RichText(
+                            text: TextSpan(
+                              text: l10n.home_card_weight,
+                              style: AppTheme.text11black87Semibold,
+                            ),
                           ),
                           Expanded(
                             child: RichText(
@@ -196,13 +200,15 @@ class CatBreedCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 9),
                       // Inteligencia de la raza
                       Row(
                         children: [
-                          Text(
-                            l10n.home_card_intelligence,
-                            style: AppTheme.text11black87Semibold,
+                          RichText(
+                            text: TextSpan(
+                              text: l10n.home_card_intelligence,
+                              style: AppTheme.text11black87Semibold,
+                            ),
                           ),
                           ...List.generate(5, (index) {
                             int intelligence = 0;

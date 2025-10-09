@@ -105,14 +105,14 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: 13,
                       letterSpacing: 1.2,
                     ),
                   ),
                   SizedBox(width: 10),
                   Image.asset(
                     'assets/images/pragma_logo.png',
-                    height: 32,
+                    height: 28,
                     fit: BoxFit.contain,
                   ),
                 ],

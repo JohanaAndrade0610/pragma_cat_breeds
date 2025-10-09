@@ -83,7 +83,7 @@ class _CatBreedSearchBarState extends State<CatBreedSearchBar> {
       controller: _controller,
       keyboardType: TextInputType.text,
       maxLength: 50,
-      style: const TextStyle(fontSize: 14),
+      style: const TextStyle(fontSize: 13),
       decoration: InputDecoration(
         hintText: widget.hintText,
         counterText: '',

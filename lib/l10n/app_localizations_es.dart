@@ -39,6 +39,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get home_input_filter => 'Filtrar por palabra clave';
 
   @override
+  String get home_no_results => 'No se encontraron coincidencias.';
+
+  @override
   String get no_connection_title => 'Sin conexión';
 
   @override

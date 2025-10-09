@@ -96,17 +96,31 @@ class _HomeScreenState extends State<HomeScreen> {
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoaded) {
-                    final filteredBreeds = _searchText.isEmpty
-                        ? state.breeds
-                        : state.breeds.where((b) {
-                            final query = _searchText.toLowerCase();
-                            final name = b.name.toLowerCase();
-                            final origin = (b.origin ?? '').toLowerCase();
-                            final weight = (b.weight ?? '').toLowerCase();
-                            return name.contains(query) ||
-                                origin.contains(query) ||
-                                weight.contains(query);
-                          }).toList();
+          final filteredBreeds = _searchText.isEmpty
+            ? state.breeds
+            : state.breeds.where((b) {
+              final query = _searchText.toLowerCase();
+              final name = b.name.toLowerCase();
+              final origin = (b.origin ?? '').toLowerCase();
+              final weight = (b.weight ?? '').toLowerCase();
+              final weightWithUnit = ((b.weight ?? '-') + ' ' + l10n.home_card_kilograms).toLowerCase();
+              return name.contains(query) ||
+                origin.contains(query) ||
+                weight.contains(query) ||
+                weightWithUnit.contains(query);
+              }).toList();
+                    if (filteredBreeds.isEmpty) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32.0),
+                          child: Text(
+                            l10n.home_no_results,
+                            style: const TextStyle(fontSize: 12, color: Colors.black54, fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    }
                     return ListView(
                       children: [
                         ...filteredBreeds
