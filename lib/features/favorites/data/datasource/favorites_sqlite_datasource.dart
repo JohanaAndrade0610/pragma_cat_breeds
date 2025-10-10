@@ -7,7 +7,7 @@
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../../../home/domain/entities/cat_breeds_entity.dart';
+import '../models/favorite_cat_model.dart';
 
 class FavoritesSqliteDatasource {
   // Nombre de la tabla en la base de datos
@@ -68,13 +68,13 @@ class FavoritesSqliteDatasource {
   /*
     * @method addFavorite
     * @description Método para agregar un gato a la lista de favoritos.
-    * @param CatBreedsEntity cat - Entidad del gato a agregar.
+    * @param FavoriteCatModel cat - Modelo del gato a agregar.
     */
-  Future<void> addFavorite(CatBreedsEntity cat) async {
+  Future<void> addFavorite(FavoriteCatModel cat) async {
     final db = await database;
     await db.insert(
       _tableName,
-      _toMap(cat),
+      cat.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -92,12 +92,12 @@ class FavoritesSqliteDatasource {
   /*
     * @method getFavorites
     * @description Método para obtener la lista de gatos favoritos.
-    * @return Future<List<CatBreedsEntity>> Lista de gatos favoritos.
+    * @return Future<List<FavoriteCatModel>> Lista de gatos favoritos.
     */
-  Future<List<CatBreedsEntity>> getFavorites() async {
+  Future<List<FavoriteCatModel>> getFavorites() async {
     final db = await database;
     final maps = await db.query(_tableName);
-    return maps.map((map) => _fromMap(map)).toList();
+    return maps.map((map) => FavoriteCatModel.fromMap(map)).toList();
   }
 
   /*
@@ -111,50 +111,4 @@ class FavoritesSqliteDatasource {
     final maps = await db.query(_tableName, where: 'id = ?', whereArgs: [id]);
     return maps.isNotEmpty;
   }
-
-  // Métodos privados para convertir entre CatBreedsEntity y Map<String, dynamic>
-  Map<String, dynamic> _toMap(CatBreedsEntity cat) => {
-    'id': cat.id,
-    'name': cat.name,
-    'description': cat.description,
-    'origin': cat.origin,
-    'imageUrl': cat.imageUrl,
-    'wikipediaUrl': cat.wikipediaUrl,
-    'lifeSpan': cat.lifeSpan,
-    'weight': cat.weight,
-    'indoor': cat.indoor == true ? 1 : 0,
-    'grooming': cat.grooming,
-    'healthIssues': cat.healthIssues,
-    'temperament': cat.temperament,
-    'adaptability': cat.adaptability,
-    'strangerFriendly': cat.strangerFriendly,
-    'childFriendly': cat.childFriendly,
-    'dogFriendly': cat.dogFriendly,
-    'intelligence': cat.intelligence,
-    'affectionLevel': cat.affectionLevel,
-    'energyLevel': cat.energyLevel,
-  };
-
-  // Convierte un Map<String, dynamic> a una instancia de CatBreedsEntity
-  CatBreedsEntity _fromMap(Map<String, dynamic> map) => CatBreedsEntity(
-    id: map['id'],
-    name: map['name'],
-    description: map['description'],
-    origin: map['origin'],
-    imageUrl: map['imageUrl'],
-    wikipediaUrl: map['wikipediaUrl'],
-    lifeSpan: map['lifeSpan'],
-    weight: map['weight'],
-    indoor: map['indoor'] == 1,
-    grooming: map['grooming'],
-    healthIssues: map['healthIssues'],
-    temperament: map['temperament'],
-    adaptability: map['adaptability'],
-    strangerFriendly: map['strangerFriendly'],
-    childFriendly: map['childFriendly'],
-    dogFriendly: map['dogFriendly'],
-    intelligence: map['intelligence'],
-    affectionLevel: map['affectionLevel'],
-    energyLevel: map['energyLevel'],
-  );
 }
