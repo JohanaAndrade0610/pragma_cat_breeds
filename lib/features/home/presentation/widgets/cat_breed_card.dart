@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/cat_breeds_entity.dart';
-import '../screens/cat_breed_detail_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class CatBreedCard extends StatelessWidget {
   // Entidad de la raza de gato a mostrar
@@ -233,13 +233,10 @@ class CatBreedCard extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           // Navegación a la pantalla de detalles de la raza
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) =>
-                                    CatBreedDetailScreen(breed: breed),
-                              ),
-                            );
+                          onTap: () async {
+                            await GoRouter.of(
+                              context,
+                            ).push('/detail/${breed.id}', extra: breed);
                           },
                           // Diseño del botón
                           child: Row(

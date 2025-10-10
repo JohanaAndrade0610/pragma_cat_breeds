@@ -7,6 +7,8 @@
 
 import 'package:go_router/go_router.dart';
 
+import '../features/favorites/presentation/presentation/favorites_screen.dart';
+import '../features/home/presentation/screens/cat_breed_detail_screen.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/home/presentation/screens/splash_screen.dart';
 import '../features/support/presentation/screens/support_screen.dart';
@@ -24,10 +26,17 @@ class AppRouter {
       // Home
       GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
       // Favoritos
-      // GoRoute(
-      //   path: '/favorites',
-      //   builder: (context, state) => FavoritesScreen(),
-      // ),
+      GoRoute(
+        path: '/favorites',
+        builder: (context, state) => FavoritesScreen(),
+      ),
+      // Detalles de raza
+      GoRoute(
+        path: '/detail/:id',
+        builder: (context, state) {
+          return CatBreedDetailScreen(breed: state.extra as dynamic);
+        },
+      ),
       // Soporte
       GoRoute(
         path: '/support',

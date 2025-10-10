@@ -16,6 +16,9 @@ import 'core/connectivity/connectivity_service.dart';
 import 'core/locale_notifier.dart';
 import 'core/theme_mode_notifier.dart';
 import 'l10n/app_localizations.dart';
+import 'features/favorites/data/datasource/favorites_sqlite_datasource.dart';
+import 'features/favorites/data/repositories/favorites_repository_impl.dart';
+import 'features/favorites/presentation/cubit/favorites_cubit.dart';
 
 // Servicio de conectividad para toda la aplicación
 final ConnectivityService _connectivityService = ConnectivityService();
@@ -27,9 +30,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     // Configuración del router
     final router = AppRouter.instance.router;
-    // Retornar la aplicación con el router configurado, temas e idiomas de la aplicación
-    return BlocProvider<HomeCubit>(
-      create: (_) => getIt<HomeCubit>(),
+    // Providers de los cubits para la gestión del estado de la aplicación
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()),
+        BlocProvider<FavoritesCubit>(
+          create: (_) => FavoritesCubit(
+            FavoritesRepositoryImpl(FavoritesSqliteDatasource()),
+          ),
+        ),
+      ],
+      // Retornar la aplicación con el router configurado, temas e idiomas de la aplicación
       child: ValueListenableBuilder<ThemeMode>(
         valueListenable: themeModeNotifier,
         builder: (context, mode, _) {
