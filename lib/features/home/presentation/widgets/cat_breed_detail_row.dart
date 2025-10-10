@@ -27,20 +27,26 @@ Widget buildInfoRow(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       // Título del atributo
-      Text(
-        label,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 12,
-          color: mainTextColor,
+      MediaQuery(
+        data: MediaQuery.of(ctx).copyWith(textScaleFactor: 1.0),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+            color: mainTextColor,
+          ),
         ),
       ),
       const SizedBox(height: 6),
       // Texto perteneciente al atributo
-      Text(
-        value == null || value.isEmpty ? '-' : value,
-        style: TextStyle(fontSize: 12, color: secondaryTextColor),
-        textAlign: TextAlign.justify,
+      MediaQuery(
+        data: MediaQuery.of(ctx).copyWith(textScaleFactor: 1.0),
+        child: Text(
+          value == null || value.isEmpty ? '-' : value,
+          style: TextStyle(fontSize: 12, color: secondaryTextColor),
+          textAlign: TextAlign.justify,
+        ),
       ),
       // Espaciado inferior si no es el último elemento
       if (!isLast) const SizedBox(height: 14),

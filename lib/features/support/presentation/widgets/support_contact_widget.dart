@@ -58,17 +58,20 @@ class SupportContactWidget extends StatelessWidget {
                   const SizedBox(width: 8),
                   // Etiqueta "Contactar por WhatsApp"
                   Flexible(
-                    child: Text(
-                      l10n.support_contact_by_whatsApp,
-                      style: AppTheme.text146529CDSemibold.copyWith(
-                        color: const Color(0xFF6529cd),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                    child: MediaQuery(
+                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                      child: Text(
+                        l10n.support_contact_by_whatsApp,
+                        style: AppTheme.text146529CDSemibold.copyWith(
+                          color: const Color(0xFF6529cd),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.visible,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
                       ),
-                      maxLines: 2,
-                      overflow: TextOverflow.visible,
-                      softWrap: true,
-                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],

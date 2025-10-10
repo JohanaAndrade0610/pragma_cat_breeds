@@ -79,40 +79,43 @@ class _CatBreedSearchBarState extends State<CatBreedSearchBar> {
   @override
   Widget build(BuildContext context) {
     // Construcción del campo de búsqueda
-    return TextField(
-      controller: _controller,
-      keyboardType: TextInputType.text,
-      maxLength: 50,
-      style: const TextStyle(fontSize: 13),
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        counterText: '',
-        prefixIcon: SizedBox(
-          width: 22,
-          height: 22,
-          child: Padding(
-            padding: EdgeInsets.only(left: 15, right: 5),
-            // Imagen del gato ubicado a la izquierda del campo de búsqueda
-            child: Image.asset(
-              'assets/images/cat_logo.png',
-              fit: BoxFit.contain,
-              color: Color(0xFF6529CD),
-              colorBlendMode: BlendMode.srcIn,
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      child: TextField(
+        controller: _controller,
+        keyboardType: TextInputType.text,
+        maxLength: 50,
+        style: const TextStyle(fontSize: 13),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          counterText: '',
+          prefixIcon: SizedBox(
+            width: 22,
+            height: 22,
+            child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 5),
+              // Imagen del gato ubicado a la izquierda del campo de búsqueda
+              child: Image.asset(
+                'assets/images/cat_logo.png',
+                fit: BoxFit.contain,
+                color: Color(0xFF6529CD),
+                colorBlendMode: BlendMode.srcIn,
+              ),
             ),
           ),
-        ),
-        // Icono de búsqueda ubicado a la derecha del campo de búsqueda
-        suffixIcon: const Icon(Icons.search, color: Color(0xFF6529CD)),
-        filled: true,
-        fillColor: widget.fillColor,
-        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(color: Color(0xFF6529CD), width: 1.5),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(color: Color(0xFF6529CD), width: 2),
+          // Icono de búsqueda ubicado a la derecha del campo de búsqueda
+          suffixIcon: const Icon(Icons.search, color: Color(0xFF6529CD)),
+          filled: true,
+          fillColor: widget.fillColor,
+          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(color: Color(0xFF6529CD), width: 1.5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(color: Color(0xFF6529CD), width: 2),
+          ),
         ),
       ),
     );

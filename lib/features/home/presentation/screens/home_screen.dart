@@ -122,14 +122,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32.0),
-                          child: Text(
-                            l10n.home_no_results,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: secondaryTextColor,
-                              fontWeight: FontWeight.w500,
+                          child: MediaQuery(
+                            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                            child: Text(
+                              l10n.home_no_results,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: secondaryTextColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ),
                       );

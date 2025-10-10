@@ -223,7 +223,8 @@ class CatBreedCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 9),
                       // Inteligencia de la raza
-                      Row(
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           RichText(
                             text: TextSpan(
@@ -235,21 +236,25 @@ class CatBreedCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          ...List.generate(5, (index) {
-                            int intelligence = 0;
-                            final value = breed.intelligence;
-                            if (value != null) {
-                              intelligence =
-                                  int.tryParse(value.toString()) ?? 0;
-                            }
-                            return Icon(
-                              index < intelligence
-                                  ? Icons.star
-                                  : Icons.star_border,
-                              color: Color(0xFF6529CD),
-                              size: 14,
-                            );
-                          }),
+                          const SizedBox(width: 4),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(5, (index) {
+                              int intelligence = 0;
+                              final value = breed.intelligence;
+                              if (value != null) {
+                                intelligence =
+                                    int.tryParse(value.toString()) ?? 0;
+                              }
+                              return Icon(
+                                index < intelligence
+                                    ? Icons.star
+                                    : Icons.star_border,
+                                color: Color(0xFF6529CD),
+                                size: 14,
+                              );
+                            }),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 15),
@@ -272,22 +277,26 @@ class CatBreedCard extends StatelessWidget {
                                 color: Color(0xFF6529CD),
                               ),
                               const SizedBox(width: 5),
-                              Center(
-                                child: Text(
-                                  l10n.home_card_see_more_info,
-                                  style: AppTheme.text146529CDSemibold.copyWith(
-                                    color: Color(0xFF6529CD),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 11,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: Color(0xFF6529CD),
+                              Expanded(
+                                child: MediaQuery(
+                                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                  child: Text(
+                                    l10n.home_card_see_more_info,
+                                    style: TextStyle(
+                                      color: Color(0xFF6529CD),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Color(0xFF6529CD),
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                    textAlign: TextAlign.left,
                                   ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.visible,
-                                  softWrap: true,
-                                  textAlign: TextAlign.left,
                                 ),
                               ),
+
                             ],
                           ),
                         ),

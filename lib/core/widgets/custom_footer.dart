@@ -57,7 +57,6 @@ class CustomFooter extends StatelessWidget {
     ];
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.09,
       width: double.infinity,
       // Diseño del contenedor del footer
       decoration: BoxDecoration(
@@ -86,6 +85,7 @@ class CustomFooter extends StatelessWidget {
               onTap: () => onItemTapped(i),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(
                     height: 6,
@@ -97,19 +97,22 @@ class CustomFooter extends StatelessWidget {
                     size: 28,
                   ),
                   // Nombre del item
-                  Text(
-                    items[i].label,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: isSelected
-                          ? FontWeight.w600
-                          : FontWeight.w400,
-                      color: isSelected ? selectedColor : customUnselectedColor,
-                      letterSpacing: 0.5,
+                  MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: Text(
+                      items[i].label,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.w400,
+                        color: isSelected ? selectedColor : customUnselectedColor,
+                        letterSpacing: 0.5,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
                   ),
                   // Línea indicadora del item seleccionado
                   if (isSelected) ...[

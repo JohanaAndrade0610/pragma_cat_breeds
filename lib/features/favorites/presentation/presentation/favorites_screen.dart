@@ -75,19 +75,22 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 builder: (context, state) {
                   if (state is FavoritesLoaded && state.favorites.isNotEmpty) {
                     final favorites = state.favorites;
-                    return GridView.builder(
-                      itemCount: favorites.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 18,
-                            crossAxisSpacing: 18,
-                            childAspectRatio: 1.1,
-                          ),
-                      itemBuilder: (context, index) {
-                        final cat = favorites[index];
-                        return FavoriteCatCard(cat: cat);
-                      },
+                    return Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: GridView.builder(
+                        itemCount: favorites.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 18,
+                              crossAxisSpacing: 18,
+                              childAspectRatio: 1.1,
+                            ),
+                        itemBuilder: (context, index) {
+                          final cat = favorites[index];
+                          return FavoriteCatCard(cat: cat);
+                        },
+                      ),
                     );
                   } else if (state is FavoritesLoaded &&
                       state.favorites.isEmpty) {
@@ -105,14 +108,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         ),
                         const SizedBox(height: 16),
                         //Texto "No hay gatos marcados como favoritos"
-                        Text(
-                          l10n.favorites_no_favorites,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: secondaryTextColor,
-                            fontWeight: FontWeight.w500,
+                        MediaQuery(
+                          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                          child: Text(
+                            l10n.favorites_no_favorites,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                         const Expanded(child: SizedBox()),
                       ],

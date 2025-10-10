@@ -126,17 +126,19 @@ class _SupportScreenState extends State<SupportScreen>
                         size: 34,
                       ),
                       const SizedBox(height: 12),
-                      // Etiqueta "¿Tienes dudas o inquietudes sobre este proyecto?"
-                      Text(
-                        l10n.support_you_have_questions,
-                        style: TextStyle(
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.grey[800],
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                      MediaQuery(
+                        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                        child: Text(
+                          l10n.support_you_have_questions,
+                          style: TextStyle(
+                            color: Theme.of(context).brightness == Brightness.dark
+                                ? Colors.white
+                                : Colors.grey[800],
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 4),
                       // Etiqueta "¡Contáctanos y te responderemos con gusto!"
@@ -144,18 +146,21 @@ class _SupportScreenState extends State<SupportScreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Flexible(
-                            child: Text(
-                              l10n.support_contact_us,
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).brightness ==
-                                        Brightness.dark
-                                    ? Colors.white70
-                                    : Colors.grey[700],
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                            child: MediaQuery(
+                              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                              child: Text(
+                                l10n.support_contact_us,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white70
+                                      : Colors.grey[700],
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],

@@ -64,9 +64,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 // Botón para el control de idioma (Español-Inglés)
                 _CircleIconButton(
-                  child: Text(
-                    Localizations.localeOf(context).languageCode.toUpperCase(),
-                    style: AppTheme.text12FFFFFFBold2,
+                  child: MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: Text(
+                      Localizations.localeOf(context).languageCode.toUpperCase(),
+                      style: AppTheme.text12FFFFFFBold2,
+                    ),
                   ),
                   onTap: onLanguageTap,
                 ),

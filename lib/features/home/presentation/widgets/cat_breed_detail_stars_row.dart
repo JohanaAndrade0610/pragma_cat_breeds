@@ -12,9 +12,12 @@ Widget buildStarsRow(String label, int? value, {bool isLast = false}) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       // Título del atributo
-      Text(
-        label,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      MediaQuery(
+        data: MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
+        child: Text(
+          label,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+        ),
       ),
       const SizedBox(height: 6),
       // Fila de estrellas según la calificación (0-5)

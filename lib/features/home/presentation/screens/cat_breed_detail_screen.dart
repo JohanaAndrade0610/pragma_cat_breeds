@@ -145,14 +145,17 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                       children: [
                         Expanded(
                           // Nombre de la raza y su ID
-                          child: Text(
-                            '${widget.breed.name} (${widget.breed.id})',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: mainTextColor,
+                          child: MediaQuery(
+                            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                            child: Text(
+                              '${widget.breed.name} (${widget.breed.id})',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: mainTextColor,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                            textAlign: TextAlign.left,
                           ),
                         ),
                         // Icono de favorito
@@ -237,12 +240,19 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                               size: 16,
                             ),
                             SizedBox(width: 6),
-                            Text(
-                              l10n.details_general_information,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6529CD),
+                            Expanded(
+                              child: MediaQuery(
+                                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                child: Text(
+                                  l10n.details_general_information,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF6529CD),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                           ],
@@ -267,11 +277,14 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
-                                    l10n.details_wikipedia,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
+                                  MediaQuery(
+                                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                    child: Text(
+                                      l10n.details_wikipedia,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(height: 6),
@@ -287,17 +300,20 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                                         );
                                       }
                                     },
-                                    child: Text(
-                                      widget.breed.wikipediaUrl!,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: isDark
-                                            ? Color(0xFF5AB6FF)
-                                            : Color(0xFF0000FF),
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: isDark
-                                            ? Color(0xFF5AB6FF)
-                                            : Color(0xFF0000FF),
+                                    child: MediaQuery(
+                                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                      child: Text(
+                                        widget.breed.wikipediaUrl!,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: isDark
+                                              ? Color(0xFF5AB6FF)
+                                              : Color(0xFF0000FF),
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: isDark
+                                              ? Color(0xFF5AB6FF)
+                                              : Color(0xFF0000FF),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -322,12 +338,19 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                               size: 16,
                             ),
                             SizedBox(width: 6),
-                            Text(
-                              l10n.details_physical_characteristics,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6529CD),
+                            Expanded(
+                              child: MediaQuery(
+                                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                child: Text(
+                                  l10n.details_physical_characteristics,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF6529CD),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                           ],
@@ -386,12 +409,19 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                               size: 16,
                             ),
                             SizedBox(width: 6),
-                            Text(
-                              l10n.details_personality_and_behavior,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6529CD),
+                            Expanded(
+                              child: MediaQuery(
+                                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                                child: Text(
+                                  l10n.details_personality_and_behavior,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF6529CD),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                           ],
