@@ -16,6 +16,7 @@ import '../../../../core/locale_notifier.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../favorites/presentation/cubit/favorites_cubit.dart';
 import '../../../favorites/presentation/cubit/favorites_state.dart';
 import '../../domain/entities/cat_breeds_entity.dart';
@@ -73,17 +74,21 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    // Control de localización para multiples idiomas
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       // AppBar genérico de la aplicación
       appBar: CustomAppBar(
         showBack: true,
         onBack: () => Navigator.of(context).pop(),
         onThemeTap: () {
+          // Control modo claro/oscuro
           themeModeNotifier.value = themeModeNotifier.value == ThemeMode.light
               ? ThemeMode.dark
               : ThemeMode.light;
         },
         onLanguageTap: () {
+          // Control cambio de idioma
           localeNotifier.value = localeNotifier.value.languageCode == 'en'
               ? const Locale('es')
               : const Locale('en');
@@ -211,7 +216,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           margin: EdgeInsets.symmetric(vertical: 10),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.info_outline,
                               color: Color(0xFF6529CD),
@@ -219,7 +224,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                             ),
                             SizedBox(width: 6),
                             Text(
-                              'Información general',
+                              l10n.details_general_information,
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
@@ -233,17 +238,23 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           margin: EdgeInsets.symmetric(vertical: 10),
                         ),
                         // Descripción de la raza
-                        buildInfoRow('Descripción', widget.breed.description),
+                        buildInfoRow(
+                          l10n.details_description,
+                          widget.breed.description,
+                        ),
                         // Origen de la raza
-                        buildInfoRow('Origen', widget.breed.origin),
+                        buildInfoRow(
+                          l10n.details_card_origin,
+                          widget.breed.origin,
+                        ),
                         // Enlace a Wikipedia
                         widget.breed.wikipediaUrl != null &&
                                 widget.breed.wikipediaUrl!.isNotEmpty
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  const Text(
-                                    'Wikipedia',
+                                  Text(
+                                    l10n.details_wikipedia,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12,
@@ -275,7 +286,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                                 ],
                               )
                             : buildInfoRow(
-                                'Wikipedia',
+                                l10n.details_wikipedia,
                                 widget.breed.wikipediaUrl,
                                 isLast: true,
                               ),
@@ -286,7 +297,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           margin: EdgeInsets.symmetric(vertical: 10),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.pets,
                               color: Color(0xFF6529CD),
@@ -294,7 +305,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                             ),
                             SizedBox(width: 6),
                             Text(
-                              'Características físicas',
+                              l10n.details_physical_characteristics,
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
@@ -309,7 +320,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                         ),
                         // Esperanza de vida de la raza
                         buildInfoRow(
-                          'Esperanza de vida',
+                          l10n.details_life_expectancy,
                           widget.breed.lifeSpan != null &&
                                   widget.breed.lifeSpan!.isNotEmpty
                               ? widget.breed.lifeSpan! + ' años'
@@ -317,27 +328,29 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                         ),
                         // Peso de la raza
                         buildInfoRow(
-                          'Peso',
+                          l10n.details_weight,
                           widget.breed.weight != null &&
                                   widget.breed.weight!.isNotEmpty
-                              ? widget.breed.weight! + ' kilogramos'
+                              ? widget.breed.weight! +
+                                    ' ' +
+                                    l10n.home_card_kilograms
                               : widget.breed.weight,
                         ),
                         // ¿La raza vive en interiores?
                         buildInfoRow(
-                          '¿Vive en interiores?',
+                          l10n.details_indoor,
                           widget.breed.indoor == null
                               ? null
                               : (widget.breed.indoor! ? 'Sí' : 'No'),
                         ),
                         // Nivel de cepillado de la raza
                         buildStarsRow(
-                          'Nivel de cepillado',
+                          l10n.details_grooming,
                           widget.breed.grooming,
                         ),
                         // ¿La raza tiene problemas de salud?
                         buildStarsRow(
-                          'Problemas de salud',
+                          l10n.details_health_issues,
                           widget.breed.healthIssues,
                           isLast: true,
                         ),
@@ -348,7 +361,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           margin: EdgeInsets.symmetric(vertical: 10),
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.emoji_people,
                               color: Color(0xFF6529CD),
@@ -356,7 +369,7 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                             ),
                             SizedBox(width: 6),
                             Text(
-                              'Personalidad y comportamiento',
+                              l10n.details_personality_and_behavior,
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
@@ -370,40 +383,43 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           margin: EdgeInsets.symmetric(vertical: 10),
                         ),
                         // Temperamento de la raza
-                        buildInfoRow('Temperamento', widget.breed.temperament),
+                        buildInfoRow(
+                          l10n.details_temperament,
+                          widget.breed.temperament,
+                        ),
                         // Nivel de adaptabilidad de la raza
                         buildStarsRow(
-                          'Adaptabilidad',
+                          l10n.details_adaptability,
                           widget.breed.adaptability,
                         ),
                         // ¿La raza es amigable con extraños?
                         buildStarsRow(
-                          'Amigable con extraños',
+                          l10n.details_stranger_friendly,
                           widget.breed.strangerFriendly,
                         ),
                         // ¿La raza es amigable con niños?
                         buildStarsRow(
-                          'Amigable con niños',
+                          l10n.details_child_friendly,
                           widget.breed.childFriendly,
                         ),
                         // ¿La raza es amigable con perros?
                         buildStarsRow(
-                          'Amigable con perros',
+                          l10n.details_dog_friendly,
                           widget.breed.dogFriendly,
                         ),
                         // Nivel de inteligencia de la raza
                         buildStarsRow(
-                          'Inteligencia',
+                          l10n.details_intelligence,
                           widget.breed.intelligence,
                         ),
                         // Nivel de afecto de la raza
                         buildStarsRow(
-                          'Nivel de afecto',
+                          l10n.details_affection_level,
                           widget.breed.affectionLevel,
                         ),
                         // Nivel de energía de la raza
                         buildStarsRow(
-                          'Nivel de energía',
+                          l10n.details_energy_level,
                           widget.breed.energyLevel,
                         ),
                       ],

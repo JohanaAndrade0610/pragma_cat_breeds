@@ -9,6 +9,66 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get details_general_information => 'General information';
+
+  @override
+  String get details_description => 'Description';
+
+  @override
+  String get details_card_origin => 'Origin';
+
+  @override
+  String get details_wikipedia => 'Wikipedia';
+
+  @override
+  String get details_physical_characteristics => 'Physical characteristics';
+
+  @override
+  String get details_life_expectancy => 'Life expectancy';
+
+  @override
+  String get details_weight => 'Weight';
+
+  @override
+  String get details_indoor => '¿Does it live indoors?';
+
+  @override
+  String get details_grooming => 'Grooming level';
+
+  @override
+  String get details_health_issues => 'Health problems';
+
+  @override
+  String get details_personality_and_behavior => 'Personality and behavior';
+
+  @override
+  String get details_temperament => 'Temperament';
+
+  @override
+  String get details_adaptability => 'Adaptability';
+
+  @override
+  String get details_stranger_friendly => 'Friendly with strangers';
+
+  @override
+  String get details_child_friendly => 'Friendly with children';
+
+  @override
+  String get details_dog_friendly => 'Friendly with dogs';
+
+  @override
+  String get details_intelligence => 'Intelligence';
+
+  @override
+  String get details_affection_level => 'Affection level';
+
+  @override
+  String get details_energy_level => 'Energy level';
+
+  @override
+  String get favorites_no_favorites => 'There are no cats marked as favorites yet.';
+
+  @override
   String get footer_home => 'Home';
 
   @override
@@ -51,7 +111,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get support_you_have_questions => '¿Do you have questions or concerns about this project?';
 
   @override
-  String get support_contact_us => '¡Contact us and we\'ll be happy to help!';
+  String get support_contact_us => '¡Contact us and we will gladly get back to you!';
 
   @override
   String get support_contact_by_whatsApp => 'Contact via WhatsApp';

@@ -95,6 +95,126 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @details_general_information.
+  ///
+  /// In en, this message translates to:
+  /// **'General information'**
+  String get details_general_information;
+
+  /// No description provided for @details_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get details_description;
+
+  /// No description provided for @details_card_origin.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin'**
+  String get details_card_origin;
+
+  /// No description provided for @details_wikipedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Wikipedia'**
+  String get details_wikipedia;
+
+  /// No description provided for @details_physical_characteristics.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical characteristics'**
+  String get details_physical_characteristics;
+
+  /// No description provided for @details_life_expectancy.
+  ///
+  /// In en, this message translates to:
+  /// **'Life expectancy'**
+  String get details_life_expectancy;
+
+  /// No description provided for @details_weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get details_weight;
+
+  /// No description provided for @details_indoor.
+  ///
+  /// In en, this message translates to:
+  /// **'¿Does it live indoors?'**
+  String get details_indoor;
+
+  /// No description provided for @details_grooming.
+  ///
+  /// In en, this message translates to:
+  /// **'Grooming level'**
+  String get details_grooming;
+
+  /// No description provided for @details_health_issues.
+  ///
+  /// In en, this message translates to:
+  /// **'Health problems'**
+  String get details_health_issues;
+
+  /// No description provided for @details_personality_and_behavior.
+  ///
+  /// In en, this message translates to:
+  /// **'Personality and behavior'**
+  String get details_personality_and_behavior;
+
+  /// No description provided for @details_temperament.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperament'**
+  String get details_temperament;
+
+  /// No description provided for @details_adaptability.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptability'**
+  String get details_adaptability;
+
+  /// No description provided for @details_stranger_friendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly with strangers'**
+  String get details_stranger_friendly;
+
+  /// No description provided for @details_child_friendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly with children'**
+  String get details_child_friendly;
+
+  /// No description provided for @details_dog_friendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly with dogs'**
+  String get details_dog_friendly;
+
+  /// No description provided for @details_intelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'Intelligence'**
+  String get details_intelligence;
+
+  /// No description provided for @details_affection_level.
+  ///
+  /// In en, this message translates to:
+  /// **'Affection level'**
+  String get details_affection_level;
+
+  /// No description provided for @details_energy_level.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy level'**
+  String get details_energy_level;
+
+  /// No description provided for @favorites_no_favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no cats marked as favorites yet.'**
+  String get favorites_no_favorites;
+
   /// No description provided for @footer_home.
   ///
   /// In en, this message translates to:
@@ -182,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @support_contact_us.
   ///
   /// In en, this message translates to:
-  /// **'¡Contact us and we\'ll be happy to help!'**
+  /// **'¡Contact us and we will gladly get back to you!'**
   String get support_contact_us;
 
   /// No description provided for @support_contact_by_whatsApp.

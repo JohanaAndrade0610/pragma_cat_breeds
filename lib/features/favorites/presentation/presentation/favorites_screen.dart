@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme_mode_notifier.dart';
 import '../../../../core/locale_notifier.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../home/domain/entities/cat_breeds_entity.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_footer.dart';
@@ -26,16 +27,20 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
+    // Control de localización para multiples idiomas
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       // Appbar generico de la aplicación
       appBar: CustomAppBar(
         showBack: false,
         onThemeTap: () {
+          // Control modo claro/oscuro
           themeModeNotifier.value = themeModeNotifier.value == ThemeMode.light
               ? ThemeMode.dark
               : ThemeMode.light;
         },
         onLanguageTap: () {
+          // Control cambio de idioma
           localeNotifier.value = localeNotifier.value.languageCode == 'en'
               ? const Locale('es')
               : const Locale('en');
@@ -78,9 +83,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   } else if (state is FavoritesLoaded &&
                       state.favorites.isEmpty) {
                     // Control para cuando no hay favoritos
-                    return const Center(
-                      child: Text('No tienes gatos favoritos aún.'),
-                    );
+                    return Center(child: Text(l10n.favorites_no_favorites));
                   }
                   return const Center(child: CircularProgressIndicator());
                 },
