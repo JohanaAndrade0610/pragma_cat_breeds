@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 
-
 import '../../l10n/app_localizations.dart';
 import '../theme/app_theme.dart';
 
@@ -28,13 +27,11 @@ class CustomFooter extends StatelessWidget {
     // Detectar modo oscuro
     final isDark = Theme.of(context).brightness == Brightness.dark;
     // Fondo del footer
-    final Color backgroundColor = isDark ? const Color(0xFF23273A) : const Color(0xFFE0E3EA);
-    // Circulo de cada opción
-    final Color circleColor = isDark ? const Color(0xFF282C34) : const Color(0xFFBFC5CE);
-    // Color del item seleccionado (morado)
+    final Color backgroundColor = isDark
+        ? const Color(0xFF23273A)
+        : Colors.white;
+    // Color del item seleccionado
     const Color selectedColor = AppTheme.purpleColor6529CD;
-    // Color del icono (blanco)
-    const Color iconColor = Colors.white;
     // Control de localización para multiples idiomas
     final l10n = AppLocalizations.of(context)!;
     // Items de navegación
@@ -59,99 +56,83 @@ class CustomFooter extends StatelessWidget {
       ),
     ];
 
-    return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: 15, vertical: 15), // Padding para separar el footer de la pantalla
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final footerHeight =
-              MediaQuery.of(context).size.height * 0.08; // El footer ocupa el 8% de la altura de la pantalla
-          final circleDiameter = footerHeight - 16; // margen superior/inferior
-          return Container(
-            height: footerHeight,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(footerHeight), // Bordes redondeados del footer
-              boxShadow: [
-                BoxShadow(
-                  // Sombra sutil para dar efecto de elevación
-                  color: Colors.black.withOpacity(0.08),
-                  blurRadius: 8,
-                  offset: const Offset(0, -2),
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-            child: Row(
-              children: List.generate(items.length, (i) {
-                final isSelected = selectedIndex == i;
-                // El botón seleccionado se expande, mientras los demás son círculos
-                return isSelected
-                    ? Expanded(
-                        child: AnimatedContainer(
-                          // Contenedor animado para el botón seleccionado
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.ease,
-                          height: circleDiameter,
-                          margin: const EdgeInsets.symmetric(horizontal: 2),
-                          decoration: BoxDecoration(
-                            color: selectedColor,
-                            borderRadius: BorderRadius.circular(circleDiameter / 2),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  items[i].iconFilled,
-                                  color: iconColor,
-                                  size: 28,
-                                ),
-                                const SizedBox(width: 8),
-                                ConstrainedBox(
-                                  // Texto del item seleccionado
-                                  constraints: BoxConstraints(maxWidth: circleDiameter * 2.2),
-                                  child: Text(
-                                    items[i].label,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: AppTheme.text14FFFFFFBold2,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(
-                        width: circleDiameter,
-                        height: circleDiameter,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          color: circleColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: SizedBox.expand(
-                          child: Center(
-                            child: IconButton(
-                              icon: Icon(
-                                items[i].iconOutline,
-                                color: iconColor,
-                                size: 28,
-                              ),
-                              onPressed: () => onItemTapped(i),
-                              padding: EdgeInsets.zero,
-                              alignment: Alignment.center,
-                            ),
-                          ),
-                        ),
-                      );
-              }),
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.09,
+      width: double.infinity,
+      // Diseño del contenedor del footer
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 8,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: List.generate(items.length, (i) {
+          final isSelected = selectedIndex == i;
+          const Color customUnselectedColor = Color(0xFFBFC5CE);
+          return Expanded(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(30),
+              onTap: () => onItemTapped(i),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 6,
+                  ), // Espacio superior antes de los iconos
+                  // Icono del item
+                  Icon(
+                    isSelected ? items[i].iconFilled : items[i].iconOutline,
+                    color: isSelected ? selectedColor : customUnselectedColor,
+                    size: 28,
+                  ),
+                  // Nombre del item
+                  Text(
+                    items[i].label,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w400,
+                      color: isSelected ? selectedColor : customUnselectedColor,
+                      letterSpacing: 0.5,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                  // Línea indicadora del item seleccionado
+                  if (isSelected) ...[
+                    const SizedBox(height: 6),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      height: 4,
+                      width: MediaQuery.of(context).size.width * 0.12,
+                      decoration: BoxDecoration(
+                        color: selectedColor,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                    // Espacio después de la línea
+                    const SizedBox(height: 10),
+                  ] else ...[
+                    const SizedBox(height: 16),
+                  ],
+                ],
+              ),
             ),
           );
-        },
+        }),
       ),
     );
   }
@@ -159,8 +140,12 @@ class CustomFooter extends StatelessWidget {
 
 // Clase privada para manejar los datos de cada item del footer
 class _FooterNavItemData {
-  final IconData iconFilled;
-  final IconData iconOutline;
-  final String label;
-  const _FooterNavItemData({required this.iconFilled, required this.iconOutline, required this.label});
+  final IconData iconFilled; // Icono cuando está seleccionado
+  final IconData iconOutline; // Icono cuando no está seleccionado
+  final String label; // Etiqueta del item
+  const _FooterNavItemData({
+    required this.iconFilled,
+    required this.iconOutline,
+    required this.label,
+  });
 }
