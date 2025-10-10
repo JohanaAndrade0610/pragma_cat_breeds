@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     // Color del campo de búsqueda según el tema
     final inputFillColor = isDark
-        ? const Color(0xFF1A1D23)
+        ? const Color(0xFF323344)
         : const Color(0xFFFAFBFD);
     // Control de la ubicación actual para el BottomNavigationBar
     final location = GoRouter.of(context).location;
@@ -70,7 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
             // Logo de Cat Breeds
             Center(
               child: Image.asset(
-                'assets/images/cat_breeds_logo_light_mode.png',
+                isDark
+                    ? 'assets/images/cat_breeds_logo_dark_mode.png'
+                    : 'assets/images/cat_breeds_logo_light_mode.png',
                 height: MediaQuery.of(context).size.height * 0.1,
                 fit: BoxFit.contain,
               ),
@@ -96,26 +98,37 @@ class _HomeScreenState extends State<HomeScreen> {
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoaded) {
-          final filteredBreeds = _searchText.isEmpty
-            ? state.breeds
-            : state.breeds.where((b) {
-              final query = _searchText.toLowerCase();
-              final name = b.name.toLowerCase();
-              final origin = (b.origin ?? '').toLowerCase();
-              final weight = (b.weight ?? '').toLowerCase();
-              final weightWithUnit = ((b.weight ?? '-') + ' ' + l10n.home_card_kilograms).toLowerCase();
-              return name.contains(query) ||
-                origin.contains(query) ||
-                weight.contains(query) ||
-                weightWithUnit.contains(query);
-              }).toList();
+                    final filteredBreeds = _searchText.isEmpty
+                        ? state.breeds
+                        : state.breeds.where((b) {
+                            final query = _searchText.toLowerCase();
+                            final name = b.name.toLowerCase();
+                            final origin = (b.origin ?? '').toLowerCase();
+                            final weight = (b.weight ?? '').toLowerCase();
+                            final weightWithUnit =
+                                ((b.weight ?? '-') +
+                                        ' ' +
+                                        l10n.home_card_kilograms)
+                                    .toLowerCase();
+                            return name.contains(query) ||
+                                origin.contains(query) ||
+                                weight.contains(query) ||
+                                weightWithUnit.contains(query);
+                          }).toList();
                     if (filteredBreeds.isEmpty) {
+                      final Color secondaryTextColor = isDark
+                          ? Color(0xFFB0B0C3)
+                          : Colors.black87;
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.all(32.0),
                           child: Text(
                             l10n.home_no_results,
-                            style: const TextStyle(fontSize: 12, color: Colors.black54, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w500,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),

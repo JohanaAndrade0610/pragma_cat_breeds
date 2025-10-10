@@ -7,23 +7,39 @@
 
 import 'package:flutter/material.dart';
 
-Widget buildInfoRow(String label, String? value, {bool isLast = false}) {
+Widget buildInfoRow(
+  String label,
+  String? value, {
+  bool isLast = false,
+  BuildContext? context,
+}) {
+  // Obtener el contexto si no se proporciona
+  final ctx =
+      context ??
+      (WidgetsBinding.instance.focusManager.primaryFocus?.context ??
+          (throw Exception('No context available')));
+  // Asignacion modo oscuro
+  final isDark = Theme.of(ctx).brightness == Brightness.dark;
+  // Colores de texto según el tema aplicado
+  final Color mainTextColor = isDark ? Color(0xFFF3F3F7) : Colors.black;
+  final Color secondaryTextColor = isDark ? Color(0xFFB0B0C3) : Colors.black87;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       // Título del atributo
       Text(
         label,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 12,
+          color: mainTextColor,
+        ),
       ),
       const SizedBox(height: 6),
       // Texto perteneciente al atributo
       Text(
         value == null || value.isEmpty ? '-' : value,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Color.fromARGB(152, 0, 0, 0),
-        ),
+        style: TextStyle(fontSize: 12, color: secondaryTextColor),
         textAlign: TextAlign.justify,
       ),
       // Espaciado inferior si no es el último elemento

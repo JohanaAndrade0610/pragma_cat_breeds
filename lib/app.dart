@@ -52,7 +52,12 @@ class App extends StatelessWidget {
                 theme: ThemeData.light().copyWith(
                   scaffoldBackgroundColor: Colors.white,
                 ),
-                darkTheme: ThemeData.dark(),
+                // Gris personalizado para el modo oscuro
+                darkTheme: ThemeData.dark().copyWith(
+                  scaffoldBackgroundColor: const Color(
+                    0xFF292A36,
+                  ),
+                ),
                 themeMode: mode,
                 locale: locale,
                 supportedLocales: AppLocalizations.supportedLocales,

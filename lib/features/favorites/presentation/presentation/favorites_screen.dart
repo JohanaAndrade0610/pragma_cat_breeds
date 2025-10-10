@@ -30,6 +30,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     // Control de localización para multiples idiomas
     final l10n = AppLocalizations.of(context)!;
+    // Asignacion modo oscuro
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Color de texto dependiendo del modo aplicado
+    final Color secondaryTextColor = isDark
+        ? Color(0xFFB0B0C3)
+        : Colors.black87;
     return Scaffold(
       // Appbar generico de la aplicación
       appBar: CustomAppBar(
@@ -55,7 +61,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             // Logo de la aplicación
             Center(
               child: Image.asset(
-                'assets/images/cat_breeds_logo_light_mode.png',
+                isDark
+                    ? 'assets/images/cat_breeds_logo_dark_mode.png'
+                    : 'assets/images/cat_breeds_logo_light_mode.png',
                 height: MediaQuery.of(context).size.height * 0.1,
                 fit: BoxFit.contain,
               ),
@@ -99,9 +107,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         //Texto "No hay gatos marcados como favoritos"
                         Text(
                           l10n.favorites_no_favorites,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
-                            color: Colors.black54,
+                            color: secondaryTextColor,
                             fontWeight: FontWeight.w500,
                           ),
                           textAlign: TextAlign.center,

@@ -23,8 +23,15 @@ class CatBreedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Control de localización para multiples idiomas
     final l10n = AppLocalizations.of(context)!;
+    // Asignacion modo oscuro
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     // Resaltador del texto que coincide con la búsqueda
-    Color highlightBg = Color(0xFF6529CD).withOpacity(0.25);
+    Color highlightBg = Color(0xFF6529CD).withOpacity(isDark ? 0.35 : 0.25);
+    // Colores de texto según el tema aplicado
+    final Color mainTextColor = isDark ? Color(0xFFF3F3F7) : Colors.black;
+    final Color secondaryTextColor = isDark
+        ? Color(0xFFB0B0C3)
+        : Colors.black87;
 
     // Resaltador de coincidencias en el texto
     InlineSpan highlightMatch(
@@ -73,14 +80,14 @@ class CatBreedCard extends StatelessWidget {
         width: double.infinity,
         margin: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? const Color(0xFF323344) : Colors.white,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             // Sombra de la tarjeta
             BoxShadow(
-              color: const Color(0xFF6529CD).withOpacity(0.25),
-              blurRadius: 6,
-              spreadRadius: 4,
+              color: const Color(0xFF6529CD).withOpacity(isDark ? 0.40 : 0.25),
+              blurRadius: isDark ? 9 : 6,
+              spreadRadius: isDark ? 3 : 4,
               offset: const Offset(0, 2),
             ),
           ],
@@ -143,12 +150,12 @@ class CatBreedCard extends StatelessWidget {
                         text: highlightMatch(
                           breed.name,
                           searchText,
-                          const TextStyle(
+                          TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                             decorationThickness: 1,
-                            color: Colors.black,
+                            color: mainTextColor,
                           ),
                         ),
                       ),
@@ -159,7 +166,11 @@ class CatBreedCard extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                               text: l10n.home_card_origin,
-                              style: AppTheme.text11black87Semibold,
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: mainTextColor,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -167,7 +178,10 @@ class CatBreedCard extends StatelessWidget {
                               text: highlightMatch(
                                 breed.origin ?? '-',
                                 searchText,
-                                AppTheme.text11black87Bold,
+                                TextStyle(
+                                  fontSize: 11,
+                                  color: secondaryTextColor,
+                                ),
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -182,7 +196,11 @@ class CatBreedCard extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                               text: l10n.home_card_weight,
-                              style: AppTheme.text11black87Semibold,
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: mainTextColor,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -192,7 +210,10 @@ class CatBreedCard extends StatelessWidget {
                                     ' ' +
                                     l10n.home_card_kilograms,
                                 searchText,
-                                AppTheme.text11black87Bold,
+                                TextStyle(
+                                  fontSize: 11,
+                                  color: secondaryTextColor,
+                                ),
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -207,7 +228,11 @@ class CatBreedCard extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                               text: l10n.home_card_intelligence,
-                              style: AppTheme.text11black87Semibold,
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: mainTextColor,
+                              ),
                             ),
                           ),
                           ...List.generate(5, (index) {

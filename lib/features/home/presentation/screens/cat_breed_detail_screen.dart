@@ -76,6 +76,20 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
   Widget build(BuildContext context) {
     // Control de localización para multiples idiomas
     final l10n = AppLocalizations.of(context)!;
+    // Asignacion modo oscuro
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Color del card dependiendo del modo aplicado
+    final Color cardBgColor = isDark ? const Color(0xFF323344) : Colors.white;
+    // Color de sombra del card
+    final Color cardShadowColor = const Color(
+      0xFF6529CD,
+    ).withOpacity(isDark ? 0.40 : 0.25);
+    // Desenfoque y expansión de la sombra
+    final double cardBlur = isDark ? 9 : 6;
+    // Spread de la sombra
+    final double cardSpread = isDark ? 3 : 4;
+    // Color del texto dependiendo del modo aplicado
+    final Color mainTextColor = isDark ? Color(0xFFF3F3F7) : Colors.black;
     return Scaffold(
       // AppBar genérico de la aplicación
       appBar: CustomAppBar(
@@ -100,13 +114,13 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
           width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: cardBgColor,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF6529CD).withOpacity(0.25),
-                blurRadius: 6,
-                spreadRadius: 4,
+                color: cardShadowColor,
+                blurRadius: cardBlur,
+                spreadRadius: cardSpread,
                 offset: const Offset(0, 2),
               ),
             ],
@@ -133,10 +147,10 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                           // Nombre de la raza y su ID
                           child: Text(
                             '${widget.breed.name} (${widget.breed.id})',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: mainTextColor,
                             ),
                             textAlign: TextAlign.left,
                           ),
@@ -275,11 +289,15 @@ class _CatBreedDetailScreenState extends State<CatBreedDetailScreen>
                                     },
                                     child: Text(
                                       widget.breed.wikipediaUrl!,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 12,
-                                        color: Color(0xFF0000FF),
+                                        color: isDark
+                                            ? Color(0xFF5AB6FF)
+                                            : Color(0xFF0000FF),
                                         decoration: TextDecoration.underline,
-                                        decorationColor: Color(0xFF0000FF),
+                                        decorationColor: isDark
+                                            ? Color(0xFF5AB6FF)
+                                            : Color(0xFF0000FF),
                                       ),
                                     ),
                                   ),

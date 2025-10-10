@@ -96,7 +96,7 @@ class _CircleIconButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
   static const Color lightCircleColor = Color(0xFFBFC5CE);
-  static const Color darkCircleColor = Color(0xFF282C34);
+  static const Color darkCircleColor = Color(0xFF323344);
 
   const _CircleIconButton({Key? key, required this.child, this.onTap})
     : super(key: key);

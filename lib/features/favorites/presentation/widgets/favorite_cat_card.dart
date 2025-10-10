@@ -18,18 +18,22 @@ class FavoriteCatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Obtener el cubit de favoritos
     final cubit = context.read<FavoritesCubit>();
-    // Diseño del card
+    // Asignacion modo oscuro
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Color del texto dependiendo del modo aplicado
+    final Color mainTextColor = isDark ? Color(0xFFF3F3F7) : Colors.black;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF323344) : Colors.white,
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF6529CD).withOpacity(0.13),
-            blurRadius: 6,
-            spreadRadius: 2,
-            offset: const Offset(0, 2),
+            color: const Color(0xFF6529CD).withOpacity(isDark ? 0.40 : 0.13),
+            blurRadius: isDark ? 9 : 6,
+            spreadRadius: isDark ? 3 : 2,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -73,10 +77,10 @@ class FavoriteCatCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     cat.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: Colors.black87,
+                      color: mainTextColor,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
