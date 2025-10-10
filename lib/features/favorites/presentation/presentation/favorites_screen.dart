@@ -11,11 +11,12 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme_mode_notifier.dart';
 import '../../../../core/locale_notifier.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../home/domain/entities/cat_breeds_entity.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_footer.dart';
 import '../cubit/favorites_cubit.dart';
 import '../cubit/favorites_state.dart';
+
+import '../widgets/favorite_cat_card.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
@@ -54,12 +55,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             // Logo de la aplicación
             Center(
               child: Image.asset(
-                'assets/images/cat_breeds_logo2.png',
+                'assets/images/cat_breeds_logo_light_mode.png',
                 height: MediaQuery.of(context).size.height * 0.1,
                 fit: BoxFit.contain,
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             // Cards de gatos favoritos
             Expanded(
               child: BlocBuilder<FavoritesCubit, FavoritesState>(
@@ -77,15 +78,39 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           ),
                       itemBuilder: (context, index) {
                         final cat = favorites[index];
-                        return _FavoriteCatCard(cat: cat);
+                        return FavoriteCatCard(cat: cat);
                       },
                     );
                   } else if (state is FavoritesLoaded &&
                       state.favorites.isEmpty) {
-                    // Control para cuando no hay favoritos
-                    return Center(child: Text(l10n.favorites_no_favorites));
+                    // Caja vacía cuando no hay favoritos
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.19,
+                        ),
+                        // Imagen de caja vacía
+                        Image.asset(
+                          'assets/images/empty_box.png',
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(height: 16),
+                        //Texto "No hay gatos marcados como favoritos"
+                        Text(
+                          l10n.favorites_no_favorites,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const Expanded(child: SizedBox()),
+                      ],
+                    );
                   }
-                  return const Center(child: CircularProgressIndicator());
+                  return const SizedBox.shrink();
                 },
               ),
             ),
@@ -108,95 +133,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               break;
           }
         },
-      ),
-    );
-  }
-}
-
-// Diseño del card individual para cada gato favorito
-class _FavoriteCatCard extends StatelessWidget {
-  final CatBreedsEntity cat;
-
-  const _FavoriteCatCard({required this.cat});
-
-  @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<FavoritesCubit>();
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF6529CD).withOpacity(0.13),
-            blurRadius: 6,
-            spreadRadius: 2,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Imagen del gato
-          Expanded(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(18),
-              ),
-              child: cat.imageUrl != null
-                  ? Image.network(
-                      cat.imageUrl!,
-                      fit: BoxFit.cover,
-                      errorBuilder: (c, e, s) => Container(
-                        color: Colors.grey[200],
-                        child: const Icon(
-                          Icons.pets,
-                          size: 40,
-                          color: Color(0xFF6529CD),
-                        ),
-                      ),
-                    )
-                  : Container(
-                      color: Colors.grey[200],
-                      child: const Icon(
-                        Icons.pets,
-                        size: 40,
-                        color: Color(0xFF6529CD),
-                      ),
-                    ),
-            ),
-          ),
-          // Nombre y corazón
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    cat.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    await cubit.toggleFavorite(cat);
-                  },
-                  child: Icon(
-                    Icons.favorite,
-                    color: Color(0xFF6529CD),
-                    size: 22,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

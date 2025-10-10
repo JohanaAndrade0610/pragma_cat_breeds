@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Logo de Cat Breeds
             Center(
               child: Image.asset(
-                'assets/images/cat_breeds_logo2.png',
+                'assets/images/cat_breeds_logo_light_mode.png',
                 height: MediaQuery.of(context).size.height * 0.1,
                 fit: BoxFit.contain,
               ),
